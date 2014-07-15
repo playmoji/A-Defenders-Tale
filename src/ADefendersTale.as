@@ -100,14 +100,7 @@ package
 		
 		protected function netConnectivity(e:StatusEvent):void 
 		{
-			if(monitor.available)
-			{
-				DataModel.getInstance().networkConnected = true;
-			}
-			else
-			{
-				DataModel.getInstance().networkConnected = false;
-			}
+			DataModel.getInstance().networkConnected = monitor.available;
 			monitor.stop();
 //			trace("netConnectivity: "+DataModel.getInstance().networkConnected);
 		}
@@ -117,8 +110,7 @@ package
 		{
 			var error : Text = new Text(String(e.data), Formats.errorFormat(), 450, true, true, false);  
 			error.antiAliasType = AntiAliasType.ADVANCED; 
-			error.x = 10;
-			error.y = 10;
+			error.x = error.y = 10;
 			error.selectable = true;
 			error.mouseEnabled = false;
 			addChild(error);
